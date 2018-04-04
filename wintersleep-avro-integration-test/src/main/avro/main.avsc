@@ -1,0 +1,154 @@
+{
+  "namespace": "org.wintersleep.avro.maven.main",
+  "type": "record",
+  "message": true,
+  "name": "Record0",
+  "fields": [
+    {
+      "name": "boolean0",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null
+    },
+    {
+      "name": "int0",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "long0",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null
+    },
+    {
+      "name": "float0",
+      "type": [
+        "null",
+        "float"
+      ],
+      "default": null
+    },
+    {
+      "name": "double0",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "bytes0",
+      "type": [
+        "null",
+        "bytes"
+      ],
+      "default": null
+    },
+    {
+      "name": "string0",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "enum0",
+      "type": [
+        "null",
+        "org.wintersleep.avro.maven.types.Enum0"
+      ],
+      "default": null
+    },
+    {
+      "name": "record_a",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "namespace": "org.wintersleep.avro.maven.main.level1",
+          "name": "Level1RecordA",
+          "type": "record",
+          "fields": [
+            {
+              "name": "record_1",
+              "default": null,
+              "type": [
+                "null",
+                {
+                  "namespace": "org.wintersleep.avro.maven.main.level2",
+                  "name": "Level2RecordA",
+                  "type": "record",
+                  "fields": [
+                    {
+                      "name": "field_1",
+                      "default": null,
+                      "type": [
+                        "null",
+                        "org.wintersleep.avro.maven.types.Enum2"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "record_2",
+              "default": null,
+              "type": [
+                "null",
+                {
+                  "namespace": "org.wintersleep.avro.maven.main.level2",
+                  "name": "Level2RecordB",
+                  "type": "record",
+                  "fields": [
+                    {
+                      "name": "field_1",
+                      "default": null,
+                      "type": [
+                        "null",
+                        {
+                          "namespace": "org.wintersleep.avro.maven.types",
+                          "name": "InlineEnum1",
+                          "type": "enum",
+                          "symbols": [
+                            "s1",
+                            "s2"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "field_2",
+                      "default": null,
+                      "type": [
+                        "null",
+                        {
+                          "namespace": "org.wintersleep.avro.maven.types",
+                          "name": "InlineEnum2",
+                          "type": "enum",
+                          "symbols": [
+                            "s1",
+                            "s2"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

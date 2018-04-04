@@ -1,0 +1,29 @@
+[
+  {
+    "namespace": "org.wintersleep.avro.maven.types",
+    "name": "Enum0",
+    "type": "enum",
+    "symbols": [
+      "enum1",
+      "enum2"
+    ]
+  },
+  {
+    "namespace": "org.wintersleep.avro.maven.types",
+    "name": "Enum1",
+    "type": "enum",
+    "symbols": [
+      "enum1",
+      "enum2"
+    ]
+  },
+  {
+    "namespace": "org.wintersleep.avro.maven.types",
+    "name": "Enum2",
+    "type": "enum",
+    "symbols": [
+      "enum1",
+      "enum2"
+    ]
+  }
+]
