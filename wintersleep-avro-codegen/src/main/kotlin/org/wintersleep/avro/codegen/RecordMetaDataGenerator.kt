@@ -40,6 +40,7 @@ class RecordMetaDataGenerator(private val nameMaker: NameMaker, private val sche
                         .addParameter(ParameterSpec.builder("fieldName", String::class).build())
                         .build())
                 .addSuperclassConstructorParameter("fieldName")
+                .addSuperclassConstructorParameter("%T.getClassSchema()", nameMaker.makeClassName(schema))
         for (field in schema.fields) {
             val fieldTypeName = nameMaker.makeMetaDataTypeName(field.schema())
 //            var initializer = "$fieldTypeName()"
@@ -49,6 +50,7 @@ class RecordMetaDataGenerator(private val nameMaker: NameMaker, private val sche
             builder.addProperty(PropertySpec.builder(nameMaker.makeFieldName(field),
                     fieldTypeName)
                     .initializer("%T(%S)", fieldTypeName, field.name())
+                    .addAnnotation(JvmField::class)
                     .build())
         }
         val file = FileSpec.builder(className.packageName(), className.simpleName())

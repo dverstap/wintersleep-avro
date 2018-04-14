@@ -19,6 +19,7 @@
  */
 package org.wintersleep.avro.model
 
+import org.apache.avro.Schema
 import org.apache.avro.generic.GenericRecord
 
-open class AvroGenericRecordParameter(fieldName: String) : AvroAbstractParameter<GenericRecord>(fieldName)
+open class AvroGenericRecordParameter(fieldName: String, val schema: Schema) : AvroAbstractParameter<GenericRecord>(fieldName)

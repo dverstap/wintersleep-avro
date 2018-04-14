@@ -23,6 +23,8 @@ import org.apache.avro.generic.GenericRecord
 
 interface AvroParameter<T> {
 
+    val fieldName: String
+
     fun findValue(record: GenericRecord): T?
 
     fun getValue(record: GenericRecord): T

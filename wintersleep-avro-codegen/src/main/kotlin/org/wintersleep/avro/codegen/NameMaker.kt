@@ -116,7 +116,7 @@ class NameMaker(private val compiler: SpecificCompiler) {
 
     }
 
-    private fun makeClassName(schema: Schema): ClassName {
+    fun makeClassName(schema: Schema): ClassName {
         return when (schema.type) {
         //Schema.Type.RECORD -> TODO()
         //Schema.Type.ENUM -> TODO()

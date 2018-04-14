@@ -21,7 +21,7 @@ package org.wintersleep.avro.model
 
 import org.apache.avro.generic.GenericRecord
 
-abstract class AvroAbstractParameter<T>(val fieldName: String) : AvroParameter<T> {
+abstract class AvroAbstractParameter<T>(override val fieldName: String) : AvroParameter<T> {
 
     override fun findValue(record: GenericRecord): T? {
         return record.get(fieldName) as T
