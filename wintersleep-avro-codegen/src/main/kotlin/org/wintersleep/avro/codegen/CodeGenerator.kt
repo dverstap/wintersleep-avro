@@ -24,7 +24,6 @@ import org.apache.avro.compiler.specific.SpecificCompiler
 import org.slf4j.LoggerFactory
 import java.io.File
 
-// TODO configurable String type
 class CodeGenerator(private val outputDir: File,
                     private val importedFiles: List<File>,
                     private val inputPaths: List<File>,
@@ -33,6 +32,8 @@ class CodeGenerator(private val outputDir: File,
     companion object {
         private val log = LoggerFactory.getLogger(CodeGenerator::class.java)
     }
+
+    private val uptodateFile = File(outputDir, ".wintersleep-avro.uptodate")
 
     fun execute() {
         val inputFiles = findInputFiles(inputPaths)
@@ -43,6 +44,7 @@ class CodeGenerator(private val outputDir: File,
             val compiler = SpecificCompiler(schema)
             val nameMaker = NameMaker(compiler)
             generate(nameMaker, schema)
+            touchUptodateFile()
             log.info("Code generation finished.")
         }
     }
@@ -78,8 +80,21 @@ class CodeGenerator(private val outputDir: File,
         if (force) {
             return false
         }
-        // TODO: Make sure to check included files too!
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (!uptodateFile.exists()) {
+            return false
+        }
+        val lastGenerated = uptodateFile.lastModified()
+        for (importedFile in importedFiles) {
+            if (importedFile.lastModified() > lastGenerated) {
+                return false
+            }
+        }
+        for (inputFile in inputFiles) {
+            if (inputFile.lastModified() > lastGenerated) {
+                return false
+            }
+        }
+        return true
     }
 
     private fun generate(nameMaker: NameMaker, schema: Schema) {
@@ -98,6 +113,16 @@ class CodeGenerator(private val outputDir: File,
                 fieldSchema.generate(nameMaker, outputDir)
             }
 
+        }
+    }
+
+    private fun touchUptodateFile() {
+        if (uptodateFile.exists()) {
+            uptodateFile.setLastModified(System.currentTimeMillis())
+        } else {
+            if (!uptodateFile.createNewFile()) {
+                throw IllegalStateException("Could not create file: " + uptodateFile)
+            }
         }
     }
 
