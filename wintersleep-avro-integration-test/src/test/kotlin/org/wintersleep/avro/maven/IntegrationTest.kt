@@ -19,7 +19,6 @@
  */
 package org.wintersleep.avro.maven
 
-import org.apache.avro.generic.GenericRecord
 import org.apache.avro.generic.GenericRecordBuilder
 import org.junit.Test
 
@@ -29,6 +28,6 @@ class IntegrationTest {
     fun test() {
         val record = GenericRecordBuilder(org.wintersleep.avro.maven.main.Record0.getClassSchema()).build()
 
-
+        // TODO
     }
 }
