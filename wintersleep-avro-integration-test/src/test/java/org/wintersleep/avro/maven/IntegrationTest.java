@@ -1,6 +1,6 @@
 /*-
  * #%L
- * org.wintersleep.avro:wintersleep-avro-model
+ * org.wintersleep.avro:wintersleep-avro-integration-test
  * %%
  * Copyright (C) 2018 Davy Verstappen
  * %%
@@ -17,9 +17,21 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.model
+package org.wintersleep.avro.maven;
 
-import org.apache.avro.Schema
-import org.apache.avro.generic.GenericRecord
+import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericRecordBuilder;
+import org.junit.Test;
+import org.wintersleep.avro.maven.main.Record0;
 
-open class AvroGenericRecordParameter(fieldName: String, val schema: Schema) : AvroAbstractParameter<GenericRecord>(fieldName)
+import static org.junit.Assert.assertNotNull;
+
+public class IntegrationTest {
+
+    @Test
+    public void test() {
+        GenericData.Record record = new GenericRecordBuilder(Record0.getClassSchema()).build();
+        assertNotNull(record.getSchema());
+    }
+
+}

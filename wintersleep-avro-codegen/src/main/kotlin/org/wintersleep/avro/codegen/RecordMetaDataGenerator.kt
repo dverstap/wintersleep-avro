@@ -19,11 +19,13 @@
  */
 package org.wintersleep.avro.codegen
 
-import com.squareup.kotlinpoet.*
+import com.squareup.javapoet.*
 import org.apache.avro.Schema
 import org.slf4j.LoggerFactory
 import org.wintersleep.avro.model.AvroGenericRecordParameter
 import java.io.File
+import javax.lang.model.element.Modifier
+
 
 class RecordMetaDataGenerator(private val nameMaker: NameMaker, private val schema: Schema, private val outputDir: File) {
 
@@ -34,27 +36,43 @@ class RecordMetaDataGenerator(private val nameMaker: NameMaker, private val sche
     fun generate() {
         val className = nameMaker.makeMetaDataClassName(schema)
         log.info("Generating {}", className)
+
+        val constructor = MethodSpec.constructorBuilder()
+                .addModifiers(Modifier.PUBLIC)
+                .addParameter(String::class.java, "fieldName")
+                .addStatement("super(\$N, \$T.getClassSchema())", "fieldName", nameMaker.makeClassName(schema))
+                .build()
+
         val builder = TypeSpec.classBuilder(className)
-                .superclass(AvroGenericRecordParameter::class)
-                .primaryConstructor(FunSpec.constructorBuilder()
-                        .addParameter(ParameterSpec.builder("fieldName", String::class).build())
-                        .build())
-                .addSuperclassConstructorParameter("fieldName")
-                .addSuperclassConstructorParameter("%T.getClassSchema()", nameMaker.makeClassName(schema))
+                .addModifiers(Modifier.PUBLIC)
+                .superclass(TypeName.get(AvroGenericRecordParameter::class.java))
+                .addMethod(constructor);
+
+//                .primaryConstructor(FunSpec.constructorBuilder()
+//                        .addParameter(ParameterSpec.builder("fieldName", String::class).build())
+//                        .build())
+//                .addSuperclassConstructorParameter("fieldName")
+//                .addSuperclassConstructorParameter("%T.getClassSchema()", nameMaker.makeClassName(schema))
         for (field in schema.fields) {
             val fieldTypeName = nameMaker.makeMetaDataTypeName(field.schema())
+            builder.addField(FieldSpec.builder(fieldTypeName,
+                    nameMaker.makeFieldName(field))
+                    .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                    .initializer("new \$T(\$S)", fieldTypeName, field.name())
+                    .build())
+
 //            var initializer = "$fieldTypeName()"
 //            if (field.schema().type == Schema.Type.ENUM) {
 //                initializer = "$fieldTypeName()"
 //            }
-            builder.addProperty(PropertySpec.builder(nameMaker.makeFieldName(field),
-                    fieldTypeName)
-                    .initializer("%T(%S)", fieldTypeName, field.name())
-                    .addAnnotation(JvmField::class)
-                    .build())
+//            builder.addProperty(PropertySpec.builder(nameMaker.makeFieldName(field),
+//                    fieldTypeName)
+//                    .initializer("%T(%S)", fieldTypeName, field.name())
+//                    .addAnnotation(JvmField::class)
+//                    .build())
         }
-        val file = FileSpec.builder(className.packageName(), className.simpleName())
-                .addType(builder.build())
+        val file = JavaFile.builder(className.packageName(), builder.build())
+//                .addType(builder.build())
                 .build()
         file.writeTo(outputDir)
     }

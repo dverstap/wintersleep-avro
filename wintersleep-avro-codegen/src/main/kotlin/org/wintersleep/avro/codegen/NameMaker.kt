@@ -19,7 +19,9 @@
  */
 package org.wintersleep.avro.codegen
 
-import com.squareup.kotlinpoet.*
+import com.squareup.javapoet.ClassName
+import com.squareup.javapoet.ParameterizedTypeName
+import com.squareup.javapoet.TypeName
 import org.apache.avro.Schema
 import org.apache.avro.compiler.specific.SpecificCompiler
 import org.wintersleep.avro.model.*
@@ -31,11 +33,11 @@ class NameMaker(private val compiler: SpecificCompiler) {
         return when (schema.type) {
             Schema.Type.ARRAY -> {
                 val elementTypeName = makeTypeName(schema.elementType)
-                ParameterizedTypeName.get(AvroArrayParameter::class.asClassName(), elementTypeName)
+                ParameterizedTypeName.get(ClassName.get(AvroArrayParameter::class.java), elementTypeName)
             }
             Schema.Type.ENUM -> {
                 val enumClassName = makeClassName(schema)
-                ParameterizedTypeName.get(AvroEnumParameter::class.asClassName(), enumClassName)
+                ParameterizedTypeName.get(ClassName.get(AvroEnumParameter::class.java), enumClassName)
             }
             Schema.Type.UNION -> makeUnionMetaDataTypeName(schema)
             else -> {
@@ -48,20 +50,20 @@ class NameMaker(private val compiler: SpecificCompiler) {
         return when (schema.type!!) {
             Schema.Type.RECORD -> {
                 val className = makeClassName(schema)
-                return ClassName(className.packageName(), className.simpleName() + "MetaData")
+                return ClassName.get(className.packageName(), className.simpleName() + "MetaData")
             }
             Schema.Type.ENUM -> TODO()
             Schema.Type.ARRAY -> TODO()
             Schema.Type.MAP -> TODO()
             Schema.Type.UNION -> TODO() // makeUnionMetaDataTypeName(schema)
             Schema.Type.FIXED -> TODO()
-            Schema.Type.STRING -> AvroStringParameter::class.asClassName()
-            Schema.Type.BYTES -> AvroBytesParameter::class.asClassName()
-            Schema.Type.INT -> AvroIntegerParameter::class.asClassName()
-            Schema.Type.LONG -> AvroLongParameter::class.asClassName()
-            Schema.Type.FLOAT -> AvroFloatParameter::class.asClassName()
-            Schema.Type.DOUBLE -> AvroDoubleParameter::class.asClassName()
-            Schema.Type.BOOLEAN -> AvroBooleanParameter::class.asClassName()
+            Schema.Type.STRING -> ClassName.get(AvroStringParameter::class.java)
+            Schema.Type.BYTES -> ClassName.get(AvroBytesParameter::class.java)
+            Schema.Type.INT -> ClassName.get(AvroIntegerParameter::class.java)
+            Schema.Type.LONG -> ClassName.get(AvroLongParameter::class.java)
+            Schema.Type.FLOAT -> ClassName.get(AvroFloatParameter::class.java)
+            Schema.Type.DOUBLE -> ClassName.get(AvroDoubleParameter::class.java)
+            Schema.Type.BOOLEAN -> ClassName.get(AvroBooleanParameter::class.java)
             Schema.Type.NULL -> TODO()
         }
     }
@@ -99,18 +101,18 @@ class NameMaker(private val compiler: SpecificCompiler) {
             Schema.Type.MAP -> TODO()
             Schema.Type.UNION -> makeUnionTypeName(schema)
             Schema.Type.FIXED -> TODO()
-            Schema.Type.STRING -> String::class.asTypeName()
-            Schema.Type.BYTES -> ByteBuffer::class.asTypeName()
-            Schema.Type.INT -> Int::class.asTypeName()
-            Schema.Type.LONG -> Long::class.asTypeName()
-            Schema.Type.FLOAT -> Float::class.asTypeName()
-            Schema.Type.DOUBLE -> Double::class.asTypeName()
-            Schema.Type.BOOLEAN -> Boolean::class.asTypeName()
-            Schema.Type.NULL -> Nothing::class.asTypeName()
+            Schema.Type.STRING -> TypeName.get(String::class.java)
+            Schema.Type.BYTES -> TypeName.get(ByteBuffer::class.java)
+            Schema.Type.INT -> TypeName.get(Int::class.java)
+            Schema.Type.LONG -> TypeName.get(Long::class.java)
+            Schema.Type.FLOAT -> TypeName.get(Float::class.java)
+            Schema.Type.DOUBLE -> TypeName.get(Double::class.java)
+            Schema.Type.BOOLEAN -> TypeName.get(Boolean::class.java)
+            Schema.Type.NULL -> TypeName.get(Nothing::class.java)
             else -> {
                 val beanFullClassName = compiler.javaType(schema)
                 val parts = beanFullClassName.split(".")
-                return ClassName(parts.subList(0, parts.lastIndex).joinToString("."), parts[parts.lastIndex])
+                return ClassName.get(parts.subList(0, parts.lastIndex).joinToString("."), parts[parts.lastIndex])
             }
         }
 
@@ -124,18 +126,18 @@ class NameMaker(private val compiler: SpecificCompiler) {
             Schema.Type.MAP -> TODO()
             Schema.Type.UNION -> TODO()
             Schema.Type.FIXED -> TODO()
-            Schema.Type.STRING -> String::class.asClassName()
-            Schema.Type.BYTES -> ByteBuffer::class.asClassName()
-            Schema.Type.INT -> Int::class.asClassName()
-            Schema.Type.LONG -> Long::class.asClassName()
-            Schema.Type.FLOAT -> Float::class.asClassName()
-            Schema.Type.DOUBLE -> Double::class.asClassName()
-            Schema.Type.BOOLEAN -> Boolean::class.asClassName()
-            Schema.Type.NULL -> Nothing::class.asClassName()
+            Schema.Type.STRING -> ClassName.get(String::class.java)
+            Schema.Type.BYTES -> ClassName.get(ByteBuffer::class.java)
+            Schema.Type.INT -> ClassName.get(Int::class.java)
+            Schema.Type.LONG -> ClassName.get(Long::class.java)
+            Schema.Type.FLOAT -> ClassName.get(Float::class.java)
+            Schema.Type.DOUBLE -> ClassName.get(Double::class.java)
+            Schema.Type.BOOLEAN -> ClassName.get(Boolean::class.java)
+            Schema.Type.NULL -> ClassName.get(Nothing::class.java)
             else -> {
                 val beanFullClassName = compiler.javaType(schema)
                 val parts = beanFullClassName.split(".")
-                return ClassName(parts.subList(0, parts.lastIndex).joinToString("."), parts[parts.lastIndex])
+                return ClassName.get(parts.subList(0, parts.lastIndex).joinToString("."), parts[parts.lastIndex])
             }
         }
     }

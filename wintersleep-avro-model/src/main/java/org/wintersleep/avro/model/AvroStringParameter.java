@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,23 +17,12 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.model
+package org.wintersleep.avro.model;
 
-import org.apache.avro.generic.GenericRecord
+public class AvroStringParameter extends AvroAbstractParameter<String> {
 
-abstract class AvroAbstractParameter<T>(override val fieldName: String) : AvroParameter<T> {
-
-    override fun findValue(record: GenericRecord): T? {
-        return record.get(fieldName) as T
+    public AvroStringParameter(String fieldName) {
+        super(fieldName);
     }
-
-    override fun getValue(record: GenericRecord): T {
-        return findValue(record)
-                ?: throw IllegalArgumentException("Field ${fieldName} does not have a value in $record")
-    }
-
-    override fun setValue(record: GenericRecord, value: T) {
-        record.put(fieldName, value)
-    }
-
 }
+

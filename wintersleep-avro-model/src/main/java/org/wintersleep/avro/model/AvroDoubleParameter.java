@@ -17,6 +17,11 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.model
+package org.wintersleep.avro.model;
 
-class AvroIntegerParameter(fieldName: String) : AvroNumberParameter<Int>(fieldName)
+public class AvroDoubleParameter extends AvroAbstractParameter<Double> {
+
+    public AvroDoubleParameter(String fieldName) {
+        super(fieldName);
+    }
+}

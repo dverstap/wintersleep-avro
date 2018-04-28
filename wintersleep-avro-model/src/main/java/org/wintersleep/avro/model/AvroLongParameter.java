@@ -17,7 +17,11 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.model
+package org.wintersleep.avro.model;
 
-class AvroArrayParameter<T>(fieldName: String) : AvroAbstractParameter<List<T>>(fieldName)
+public class AvroLongParameter extends AvroAbstractParameter<Long> {
 
+    public AvroLongParameter(String fieldName) {
+        super(fieldName);
+    }
+}

@@ -77,8 +77,8 @@
 
             <dependency>
                 <groupId>com.squareup</groupId>
-                <artifactId>kotlinpoet</artifactId>
-                <version>0.7.0</version>
+                <artifactId>javapoet</artifactId>
+                <version>1.10.0</version>
             </dependency>
 
             <dependency>

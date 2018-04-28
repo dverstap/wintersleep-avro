@@ -1,6 +1,6 @@
 /*-
  * #%L
- * org.wintersleep.avro:wintersleep-avro-integration-test
+ * org.wintersleep.avro:wintersleep-avro-model
  * %%
  * Copyright (C) 2018 Davy Verstappen
  * %%
@@ -17,17 +17,11 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.maven
+package org.wintersleep.avro.model;
 
-import org.apache.avro.generic.GenericRecordBuilder
-import org.junit.Test
+public class AvroBooleanParameter extends AvroAbstractParameter<Boolean> {
 
-class IntegrationTest {
-
-    @Test
-    fun test() {
-        val record = GenericRecordBuilder(org.wintersleep.avro.maven.main.Record0.getClassSchema()).build()
-
-        // TODO
+    public AvroBooleanParameter(String fieldName) {
+        super(fieldName);
     }
 }
