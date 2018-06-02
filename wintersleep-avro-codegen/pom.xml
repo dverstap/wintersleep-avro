@@ -18,7 +18,7 @@
             <groupId>com.squareup</groupId>
             <artifactId>javapoet</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>

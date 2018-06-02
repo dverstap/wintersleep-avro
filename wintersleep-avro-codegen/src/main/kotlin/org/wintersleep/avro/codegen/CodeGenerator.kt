@@ -23,6 +23,7 @@ import org.apache.avro.Schema
 import org.apache.avro.compiler.specific.SpecificCompiler
 import org.slf4j.LoggerFactory
 import java.io.File
+import java.io.IOException
 
 class CodeGenerator(private val outputDir: File,
                     private val importedFiles: List<File>,
@@ -68,7 +69,9 @@ class CodeGenerator(private val outputDir: File,
         val result = mutableListOf<File>()
         for (inputPath in inputPaths) {
             when {
-                inputPath.isFile -> result.add(inputPath)
+                inputPath.isFile -> if (inputPath.name.endsWith(".avsc")) {
+                    result.add(inputPath)
+                }
                 inputPath.isDirectory -> result.addAll(findInputFiles(inputPath.listFiles().asList()))
                 else -> log.debug("Ignoring unknown type of path: {}", inputPath)
             }
@@ -117,6 +120,11 @@ class CodeGenerator(private val outputDir: File,
     }
 
     private fun touchUptodateFile() {
+        if (!uptodateFile.parentFile.exists()) {
+            if (!uptodateFile.parentFile.mkdirs()) {
+                throw IOException("Could not create directory: ${uptodateFile.parentFile}")
+            }
+        }
         if (uptodateFile.exists()) {
             uptodateFile.setLastModified(System.currentTimeMillis())
         } else {

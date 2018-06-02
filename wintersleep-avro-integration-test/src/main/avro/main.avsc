@@ -5,7 +5,7 @@
   "name": "Record0",
   "fields": [
     {
-      "name": "boolean0",
+      "name": "booleanScalar",
       "type": [
         "null",
         "boolean"
@@ -13,7 +13,21 @@
       "default": null
     },
     {
-      "name": "int0",
+      "name": "booleanArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "boolean"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "intScalar",
       "type": [
         "null",
         "int"
@@ -21,7 +35,21 @@
       "default": null
     },
     {
-      "name": "long0",
+      "name": "intArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "longScalar",
       "type": [
         "null",
         "long"
@@ -29,7 +57,21 @@
       "default": null
     },
     {
-      "name": "float0",
+      "name": "longArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "long"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "floatScalar",
       "type": [
         "null",
         "float"
@@ -37,7 +79,21 @@
       "default": null
     },
     {
-      "name": "double0",
+      "name": "floatArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "float"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "doubleScalar",
       "type": [
         "null",
         "double"
@@ -45,7 +101,21 @@
       "default": null
     },
     {
-      "name": "bytes0",
+      "name": "doubleArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "double"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bytesScalar",
       "type": [
         "null",
         "bytes"
@@ -53,7 +123,21 @@
       "default": null
     },
     {
-      "name": "string0",
+      "name": "bytesArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "bytes"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stringScalar",
       "type": [
         "null",
         "string"
@@ -61,12 +145,40 @@
       "default": null
     },
     {
-      "name": "enum0",
+      "name": "stringArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "enumScalar",
       "type": [
         "null",
         "org.wintersleep.avro.maven.types.Enum0"
       ],
       "default": null
+    },
+    {
+      "name": "enumArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "org.wintersleep.avro.maven.types.Enum0"
+          ]
+        }
+      ]
     },
     {
       "name": "record_a",
@@ -147,6 +259,34 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "recordArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": [
+            "null",
+            "org.wintersleep.avro.maven.main.level1.Level1RecordA"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "intArrayArray",
+      "default": null,
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": "int"
+          }
         }
       ]
     }

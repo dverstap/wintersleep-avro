@@ -95,19 +95,19 @@ class NameMaker(private val compiler: SpecificCompiler) {
 
     private fun makeTypeName(schema: Schema): TypeName {
         return when (schema.type) {
-            Schema.Type.RECORD -> TODO()
-            Schema.Type.ENUM -> TODO()
-            Schema.Type.ARRAY -> TODO()
+            Schema.Type.ARRAY -> ParameterizedTypeName.get(
+                    ClassName.get(List::class.java),
+                    makeTypeName(schema.elementType))
             Schema.Type.MAP -> TODO()
             Schema.Type.UNION -> makeUnionTypeName(schema)
             Schema.Type.FIXED -> TODO()
             Schema.Type.STRING -> TypeName.get(String::class.java)
             Schema.Type.BYTES -> TypeName.get(ByteBuffer::class.java)
-            Schema.Type.INT -> TypeName.get(Int::class.java)
-            Schema.Type.LONG -> TypeName.get(Long::class.java)
-            Schema.Type.FLOAT -> TypeName.get(Float::class.java)
-            Schema.Type.DOUBLE -> TypeName.get(Double::class.java)
-            Schema.Type.BOOLEAN -> TypeName.get(Boolean::class.java)
+            Schema.Type.INT -> TypeName.get(Integer::class.java)
+            Schema.Type.LONG -> TypeName.get(java.lang.Long::class.java)
+            Schema.Type.FLOAT -> TypeName.get(java.lang.Float::class.java)
+            Schema.Type.DOUBLE -> TypeName.get(java.lang.Double::class.java)
+            Schema.Type.BOOLEAN -> TypeName.get(java.lang.Boolean::class.java)
             Schema.Type.NULL -> TypeName.get(Nothing::class.java)
             else -> {
                 val beanFullClassName = compiler.javaType(schema)
@@ -120,8 +120,6 @@ class NameMaker(private val compiler: SpecificCompiler) {
 
     fun makeClassName(schema: Schema): ClassName {
         return when (schema.type) {
-        //Schema.Type.RECORD -> TODO()
-        //Schema.Type.ENUM -> TODO()
             Schema.Type.ARRAY -> TODO()
             Schema.Type.MAP -> TODO()
             Schema.Type.UNION -> TODO()
