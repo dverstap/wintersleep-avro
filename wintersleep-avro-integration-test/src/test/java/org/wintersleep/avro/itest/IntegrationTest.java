@@ -17,12 +17,12 @@
  * limitations under the License.
  * #L%
  */
-package org.wintersleep.avro.maven;
+package org.wintersleep.avro.itest;
 
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecordBuilder;
 import org.junit.Test;
-import org.wintersleep.avro.maven.main.Record0;
+import org.wintersleep.avro.itest.main.Record0;
 
 import static org.junit.Assert.assertNotNull;
 

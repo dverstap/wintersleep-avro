@@ -1,6 +1,6 @@
 [
   {
-    "namespace": "org.wintersleep.avro.maven.types",
+    "namespace": "org.wintersleep.avro.itest.types",
     "name": "Enum0",
     "type": "enum",
     "symbols": [
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "namespace": "org.wintersleep.avro.maven.types",
+    "namespace": "org.wintersleep.avro.itest.types",
     "name": "Enum1",
     "type": "enum",
     "symbols": [
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "namespace": "org.wintersleep.avro.maven.types",
+    "namespace": "org.wintersleep.avro.itest.types",
     "name": "Enum2",
     "type": "enum",
     "symbols": [
