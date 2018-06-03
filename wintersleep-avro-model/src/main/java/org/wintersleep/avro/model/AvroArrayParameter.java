@@ -19,8 +19,10 @@
  */
 package org.wintersleep.avro.model;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+@ParametersAreNonnullByDefault
 public class AvroArrayParameter<T> extends AvroAbstractParameter<List<T>> {
 
     public AvroArrayParameter(String fieldName) {

@@ -23,6 +23,9 @@ package org.wintersleep.avro.model;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericRecord;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class AvroGenericRecordParameter extends AvroAbstractParameter<GenericRecord> {
 
     private final Schema schema;

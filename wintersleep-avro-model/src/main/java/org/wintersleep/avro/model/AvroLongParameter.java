@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,9 +19,33 @@
  */
 package org.wintersleep.avro.model;
 
-public class AvroLongParameter extends AvroAbstractParameter<Long> {
+import com.google.common.collect.Range;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+public class AvroLongParameter extends AvroNumberParameter<Long> {
+
+    private static final Range<Long> DEFAULT_RANGE = Range.closed(Long.MIN_VALUE, Long.MAX_VALUE);
+
+    private final Range<Long> range;
 
     public AvroLongParameter(String fieldName) {
         super(fieldName);
+        range = DEFAULT_RANGE;
     }
+
+    public AvroLongParameter(String fieldName, String rangeExpr) {
+        super(fieldName);
+        range = RangeParser.parseLong(rangeExpr);
+    }
+
+    public boolean hasRange() {
+        return range != DEFAULT_RANGE;
+    }
+
+    public Range<Long> getRange() {
+        return range;
+    }
+
 }

@@ -19,8 +19,10 @@
  */
 package org.wintersleep.avro.model;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.nio.ByteBuffer;
 
+@ParametersAreNonnullByDefault
 public class AvroBytesParameter extends AvroAbstractParameter<ByteBuffer> {
 
     public AvroBytesParameter(String fieldName) {

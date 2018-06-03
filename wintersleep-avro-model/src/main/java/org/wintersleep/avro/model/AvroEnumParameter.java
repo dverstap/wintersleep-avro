@@ -19,6 +19,9 @@
  */
 package org.wintersleep.avro.model;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class AvroEnumParameter<E extends Enum<E>> extends AvroAbstractParameter<E> {
 
     public AvroEnumParameter(String fieldName) {

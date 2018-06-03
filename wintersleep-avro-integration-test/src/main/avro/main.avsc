@@ -35,6 +35,15 @@
       "default": null
     },
     {
+      "name": "intScalarWithRange",
+      "range": "-10..10",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
       "name": "intArray",
       "default": null,
       "type": [
@@ -50,6 +59,15 @@
     },
     {
       "name": "longScalar",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null
+    },
+    {
+      "name": "longScalarWithRange",
+      "range": "-100..100",
       "type": [
         "null",
         "long"

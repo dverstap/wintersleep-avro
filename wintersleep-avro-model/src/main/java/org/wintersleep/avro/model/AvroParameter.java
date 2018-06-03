@@ -23,7 +23,9 @@ import org.apache.avro.generic.GenericRecord;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@ParametersAreNonnullByDefault
 public interface AvroParameter<T> {
 
     String getFieldName();

@@ -19,6 +19,9 @@
  */
 package org.wintersleep.avro.model;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class AvroStringParameter extends AvroAbstractParameter<String> {
 
     public AvroStringParameter(String fieldName) {

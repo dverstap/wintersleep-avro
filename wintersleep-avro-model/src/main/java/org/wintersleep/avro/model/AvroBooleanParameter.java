@@ -19,6 +19,9 @@
  */
 package org.wintersleep.avro.model;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class AvroBooleanParameter extends AvroAbstractParameter<Boolean> {
 
     public AvroBooleanParameter(String fieldName) {
